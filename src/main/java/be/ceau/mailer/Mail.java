@@ -24,7 +24,7 @@ import javax.mail.internet.InternetAddress;
 
 public class Mail implements Serializable {
 
-	private static final long serialVersionUID = 201505121202L;
+	private static final long serialVersionUID = 201506201202L;
 
 	private InternetAddress from;
 	private InternetAddress to;
@@ -34,100 +34,134 @@ public class Mail implements Serializable {
 	private String txt;
 	private String html;
 
+	/**
+	 * Constructs a new empty Mail instance
+	 */
 	public Mail() {
 		ccs = new ArrayList<InternetAddress>();
 		bccs = new ArrayList<InternetAddress>();
 	}
 
 	/**
-	 * @throws IllegalArgumentException
-	 *             if argument is <code>null</code>
+	 * @param from a valid, non-null {@link javax.mail.internet.InternetAddress}
+	 * @return this Mail instance, to allow for method chaining
+	 * @throws IllegalArgumentException if argument is <code>null</code>
 	 */
-	public void setFrom(InternetAddress from) {
+	public Mail from(InternetAddress from) {
 		if (from == null) {
 			throw new IllegalArgumentException("from argument can not be null");
 		}
 		this.from = from;
+		return this;
 	}
 
 	/**
-	 * @throws IllegalArgumentException
-	 *             if argument is not a legal email address
+	 * @param from a valid, non-blank String that can be parsed as {@link javax.mail.internet.InternetAddress}
+	 * @return this Mail instance, to allow for method chaining
+	 * @throws IllegalArgumentException if argument is not a legal email address
 	 */
-	public void setFrom(String from) {
+	public Mail from(String from) {
 		this.from = convert(from);
+		return this;
 	}
 
 	/**
-	 * @throws IllegalArgumentException
-	 *             if argument is <code>null</code>
+	 * @param from a valid, non-null {@link javax.mail.internet.InternetAddress}
+	 * @return this Mail instance, to allow for method chaining
+	 * @throws IllegalArgumentException if argument is <code>null</code>
 	 */
-	public void setTo(InternetAddress to) {
+	public Mail to(InternetAddress to) {
 		if (to == null) {
 			throw new IllegalArgumentException("to argument can not be null");
 		}
 		this.to = to;
+		return this;
 	}
 
 	/**
-	 * @throws IllegalArgumentException
-	 *             if argument is not a legal email address
+	 * @param from a valid, non-blank String that can be parsed as {@link javax.mail.internet.InternetAddress}
+	 * @return this Mail instance, to allow for method chaining
+	 * @throws IllegalArgumentException if argument is not a legal email address
 	 */
-	public void setTo(String to) {
+	public Mail to(String to) {
 		this.to = convert(to);
+		return this;
 	}
 
-	public void setSubject(String subject) {
+	/**
+	 * @param subject a String (no restrictions)
+	 * @return this Mail instance, to allow for method chaining
+	 */
+	public Mail withSubject(String subject) {
 		this.subject = subject;
+		return this;
 	}
 
-	public void setText(String txt) {
+	/**
+	 * @param txt a String (no restrictions)
+	 * @return this Mail instance, to allow for method chaining
+	 */
+	public Mail withText(String txt) {
 		this.txt = txt;
+		return this;
 	}
 
-	public void setHtml(String html) {
+	/**
+	 * @param html a String (no restrictions)
+	 * @return this Mail instance, to allow for method chaining
+	 */
+	public Mail withHtml(String html) {
 		this.html = html;
+		return this;
 	}
 
 	/**
-	 * @throws IllegalArgumentException
-	 *             if argument is not a legal email address
+	 * @param html a String (no restrictions)
+	 * @return this Mail instance, to allow for method chaining
+	 * @throws IllegalArgumentException if argument is not a legal email address
 	 */
-	public void addCc(String cc) {
+	public Mail addCc(String cc) {
 		this.ccs.add(convert(cc));
+		return this;
 	}
 
 	/**
-	 * @throws IllegalArgumentException
-	 *             if argument is <code>null</code>
+	 * @param html a String (no restrictions)
+	 * @return this Mail instance, to allow for method chaining
+	 * @throws IllegalArgumentException if argument is <code>null</code>
 	 */
-	public void addCc(InternetAddress cc) {
+	public Mail addCc(InternetAddress cc) {
 		if (cc == null) {
 			throw new IllegalArgumentException("cc argument can not be null");
 		}
 		this.ccs.add(cc);
+		return this;
 	}
 
 	/**
-	 * @throws IllegalArgumentException
-	 *             if argument is not a legal email address
+	 * @param html a String (no restrictions)
+	 * @return this Mail instance, to allow for method chaining
+	 * @throws IllegalArgumentException if argument is not a legal email address
 	 */
-	public void addBcc(String bcc) {
+	public Mail addBcc(String bcc) {
 		this.bccs.add(convert(bcc));
+		return this;
 	}
 
 	/**
-	 * @throws IllegalArgumentException
-	 *             if argument is <code>null</code>
+	 * @param html a String (no restrictions)
+	 * @return this Mail instance, to allow for method chaining
+	 * @throws IllegalArgumentException if argument is <code>null</code>
 	 */
-	public void addBcc(InternetAddress bcc) {
+	public Mail addBcc(InternetAddress bcc) {
 		if (bcc == null) {
 			throw new IllegalArgumentException("bcc argument can not be null");
 		}
 		this.bccs.add(bcc);
+		return this;
 	}
 
-	private static InternetAddress convert(String email) {
+	private InternetAddress convert(String email) {
 		try {
 			return new InternetAddress(email);
 		} catch (AddressException e) {

@@ -39,7 +39,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Straightforward mail service that handles the sending of one-off messages.
+ * Mailer service that handles the sending of one-off messages.
  */
 public class Mailer {
 
@@ -67,13 +67,13 @@ public class Mailer {
 	/**
 	 * Construct a new Mailer instance to send mail over the given SMTP host and including the given bccs (if any) in all emails sent.
 	 * @param smtp a valid SMTP host
-	 * @param bccs a collection of bcc email address that can be parsed to {@link javax.mail.internet.InternetAddress} objects, may be <code>null</code> or empty.
+	 * @param bccs a collection of bcc email addresses that can be parsed to {@link javax.mail.internet.InternetAddress} objects, the collection may be <code>null</code> or empty.
 	 * @throws IllegalArgumentException if smtp is blank
 	 * @throws IllegalArgumentException if one of the included bcc addresses cannot be parsed as {@link javax.mail.internet.InternetAddress}
 	 */
 	public Mailer(String smtp, Collection<String> bccs) {
-		if (smtp == null) {
-			throw new IllegalArgumentException("smtp argument can not be null");
+		if (smtp == null || smtp.trim().length() == 0) {
+			throw new IllegalArgumentException("smtp argument can not be blank");
 		}
 		this.smtpHost = smtp;
 		if (bccs == null) {
@@ -131,7 +131,7 @@ public class Mailer {
 				message.setContent(mwrapper);
 			}
 			Transport.send(message);
-			logger.debug("send(Mail {}): success", mail);
+			logger.trace("send(Mail {}): success", mail);
 			return true;
 		} catch (SendFailedException e) {
 			logger.error("send(Mail {})", mail, e);
