@@ -66,7 +66,7 @@ public class Mail implements Serializable {
 	}
 
 	/**
-	 * @param from a valid, non-null {@link javax.mail.internet.InternetAddress}
+	 * @param to a valid, non-null {@link javax.mail.internet.InternetAddress}
 	 * @return this Mail instance, to allow for method chaining
 	 * @throws IllegalArgumentException if argument is <code>null</code>
 	 */
@@ -79,7 +79,7 @@ public class Mail implements Serializable {
 	}
 
 	/**
-	 * @param from a valid, non-blank String that can be parsed as {@link javax.mail.internet.InternetAddress}
+	 * @param to a valid, non-blank String that can be parsed as {@link javax.mail.internet.InternetAddress}
 	 * @return this Mail instance, to allow for method chaining
 	 * @throws IllegalArgumentException if argument is not a legal email address
 	 */
@@ -116,7 +116,7 @@ public class Mail implements Serializable {
 	}
 
 	/**
-	 * @param html a String (no restrictions)
+	 * @param cc a valid, non-blank String that can be parsed as {@link javax.mail.internet.InternetAddress}
 	 * @return this Mail instance, to allow for method chaining
 	 * @throws IllegalArgumentException if argument is not a legal email address
 	 */
@@ -126,7 +126,7 @@ public class Mail implements Serializable {
 	}
 
 	/**
-	 * @param html a String (no restrictions)
+	 * @param cc a valid, non-null {@link javax.mail.internet.InternetAddress}
 	 * @return this Mail instance, to allow for method chaining
 	 * @throws IllegalArgumentException if argument is <code>null</code>
 	 */
@@ -139,7 +139,7 @@ public class Mail implements Serializable {
 	}
 
 	/**
-	 * @param html a String (no restrictions)
+	 * @param bcc a valid, non-blank String that can be parsed as {@link javax.mail.internet.InternetAddress}
 	 * @return this Mail instance, to allow for method chaining
 	 * @throws IllegalArgumentException if argument is not a legal email address
 	 */
@@ -149,7 +149,7 @@ public class Mail implements Serializable {
 	}
 
 	/**
-	 * @param html a String (no restrictions)
+	 * @param bcc a valid, non-null {@link javax.mail.internet.InternetAddress}
 	 * @return this Mail instance, to allow for method chaining
 	 * @throws IllegalArgumentException if argument is <code>null</code>
 	 */
