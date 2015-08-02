@@ -1,10 +1,10 @@
-# Mailer
+# SimpleMail
 
-Mailer is a simple Java SMTP email library.
+SimpleMail is (yet another) simple Java SMTP email sender.
 
 ### Usage example
 
-Create a Mailer instance that will send email using localhost:
+Create a SimpleMail instance that will send email using localhost:
 
 ```Java
 Mailer mailer = new Mailer("localhost");
@@ -22,4 +22,4 @@ Send the email:
 mailer.send(mail);
 ```
 
-Mailer is licensed under [the Apache 2.0 license](http://www.apache.org/licenses/LICENSE-2.0.txt/).
+SimpleMail is licensed under [the Apache 2.0 license](http://www.apache.org/licenses/LICENSE-2.0.txt/).
