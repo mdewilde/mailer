@@ -22,4 +22,12 @@ Send the email:
 mailer.send(mail);
 ```
 
+Include this project from Maven Central:
+
+```XML
+<groupId>be.ceau</groupId>
+<artifactId>simplemail</artifactId>
+<version>0.9</version>
+```
+
 SimpleMail is licensed under [the Apache 2.0 license](http://www.apache.org/licenses/LICENSE-2.0.txt/).
