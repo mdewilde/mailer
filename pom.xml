@@ -4,9 +4,9 @@
 	<packaging>jar</packaging>
 	<groupId>be.ceau</groupId>
 	<artifactId>simplemail</artifactId>
-	<version>0.9</version>
+	<version>0.9.1</version>
 	<name>SimpleMail</name>
-	<description>SimpleMail is a simple Java SMTP email library</description>
+	<description>SimpleMail is (yet another) simple Java SMTP email library</description>
 	<url>http://www.ceau.be/simplemail</url>
 	<developers>
 		<developer>

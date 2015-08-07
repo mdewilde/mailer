@@ -15,12 +15,9 @@
 */
 package be.ceau.simplemail;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
 import java.util.Properties;
 
+import javax.mail.Address;
 import javax.mail.BodyPart;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -28,11 +25,8 @@ import javax.mail.Multipart;
 import javax.mail.SendFailedException;
 import javax.mail.Session;
 import javax.mail.Transport;
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMessage.RecipientType;
 import javax.mail.internet.MimeMultipart;
 
 import org.slf4j.Logger;
@@ -51,44 +45,15 @@ public class Mailer {
 	private final String smtpHost;
 	
 	/**
-	 * A collection of bcc recipients that will be added to every email
-	 */
-	private final Collection<InternetAddress> bccs;
-	
-	/**
 	 * Construct a new Mailer instance to send mail over the given SMTP host.
 	 * @param smtp a valid SMTP host
 	 * @throws IllegalArgumentException if smtp is blank
 	 */
 	public Mailer(String smtp) {
-		this(smtp, null);
-	}
-
-	/**
-	 * Construct a new Mailer instance to send mail over the given SMTP host and including the given bccs (if any) in all emails sent.
-	 * @param smtp a valid SMTP host
-	 * @param bccs a collection of bcc email addresses that can be parsed to {@link javax.mail.internet.InternetAddress} objects, the collection may be <code>null</code> or empty.
-	 * @throws IllegalArgumentException if smtp is blank
-	 * @throws IllegalArgumentException if one of the included bcc addresses cannot be parsed as {@link javax.mail.internet.InternetAddress}
-	 */
-	public Mailer(String smtp, Collection<String> bccs) {
 		if (smtp == null || smtp.trim().length() == 0) {
 			throw new IllegalArgumentException("smtp argument can not be blank");
 		}
 		this.smtpHost = smtp;
-		if (bccs == null) {
-			this.bccs = Collections.emptyList();
-		} else {
-			List<InternetAddress> list = new ArrayList<InternetAddress>();
-			for (String bcc : bccs) {
-				try {
-					list.add(new InternetAddress(bcc));
-				} catch (AddressException e) {
-					throw new IllegalArgumentException(e);
-				}
-			}
-			this.bccs = Collections.unmodifiableList(list);
-		}
 	}
 
 	public boolean send(Mail mail) {
@@ -101,18 +66,9 @@ public class Mailer {
 		try {
 			MimeMessage message = new MimeMessage(session);
 			message.setFrom(mail.getFrom());
-			message.addRecipient(Message.RecipientType.TO, mail.getTo());
-			for (InternetAddress cc : mail.getCcs()) {
-				message.addRecipient(RecipientType.CC, cc);
-			}
-			for (InternetAddress bcc : mail.getBccs()) {
-				message.addRecipient(RecipientType.BCC, bcc);
-			}
-			if (bccs != null) {
-				for (InternetAddress bcc : bccs) {
-					message.addRecipient(RecipientType.BCC, bcc);
-				}
-			}
+			message.addRecipients(Message.RecipientType.TO, mail.getTos().toArray(new Address[mail.getTos().size()]));
+			message.addRecipients(Message.RecipientType.CC, mail.getCcs().toArray(new Address[mail.getCcs().size()]));
+			message.addRecipients(Message.RecipientType.BCC, mail.getBccs().toArray(new Address[mail.getBccs().size()]));
 			message.setSubject(mail.getSubject(), "UTF-8");
 			if (mail.getHtml() == null) {
 				message.setText(mail.getTxt(), "UTF-8", "plain");

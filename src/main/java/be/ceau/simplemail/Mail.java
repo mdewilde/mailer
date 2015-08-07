@@ -24,12 +24,12 @@ import javax.mail.internet.InternetAddress;
 
 public class Mail implements Serializable {
 
-	private static final long serialVersionUID = 201506201202L;
+	private static final long serialVersionUID = 1438888844956L;
 
 	private InternetAddress from;
-	private InternetAddress to;
-	private final List<InternetAddress> ccs;
-	private final List<InternetAddress> bccs;
+	private final List<InternetAddress> tos = new ArrayList<InternetAddress>();
+	private final List<InternetAddress> ccs = new ArrayList<InternetAddress>();
+	private final List<InternetAddress> bccs = new ArrayList<InternetAddress>();
 	private String subject;
 	private String txt;
 	private String html;
@@ -37,10 +37,7 @@ public class Mail implements Serializable {
 	/**
 	 * Constructs a new empty Mail instance
 	 */
-	public Mail() {
-		ccs = new ArrayList<InternetAddress>();
-		bccs = new ArrayList<InternetAddress>();
-	}
+	public Mail() {	}
 
 	/**
 	 * @param from a valid, non-null {@link javax.mail.internet.InternetAddress}
@@ -70,11 +67,11 @@ public class Mail implements Serializable {
 	 * @return this Mail instance, to allow for method chaining
 	 * @throws IllegalArgumentException if argument is <code>null</code>
 	 */
-	public Mail to(InternetAddress to) {
+	public Mail addTo(InternetAddress to) {
 		if (to == null) {
 			throw new IllegalArgumentException("to argument can not be null");
 		}
-		this.to = to;
+		this.tos.add(to);
 		return this;
 	}
 
@@ -83,8 +80,8 @@ public class Mail implements Serializable {
 	 * @return this Mail instance, to allow for method chaining
 	 * @throws IllegalArgumentException if argument is not a legal email address
 	 */
-	public Mail to(String to) {
-		this.to = convert(to);
+	public Mail addTo(String to) {
+		this.tos.add(convert(to));
 		return this;
 	}
 
@@ -170,24 +167,23 @@ public class Mail implements Serializable {
 	}
 
 	/**
-	 * Checks if <code>this</code> Mail instance has the minimum required amount
-	 * of information.
+	 * Checks if <code>this</code> Mail instance has the minimum required amount of information.
 	 */
 	boolean isValid() {
-		return from != null && to != null && (txt != null || html != null);
+		return from != null && !tos.isEmpty() && (txt != null || html != null);
 	}
 
 	@Override
 	public String toString() {
-		return "Mail [from=" + from + ", to=" + to + ", ccs=" + ccs + ", bccs=" + bccs + ", subject=" + subject + ", txt=" + txt + ", html=" + html + "]";
+		return "Mail [from=" + from + ", tos=" + tos + ", ccs=" + ccs + ", bccs=" + bccs + ", subject=" + subject + ", txt=" + txt + ", html=" + html + "]";
 	}
 
 	InternetAddress getFrom() {
 		return from;
 	}
 
-	InternetAddress getTo() {
-		return to;
+	List<InternetAddress> getTos() {
+		return tos;
 	}
 
 	List<InternetAddress> getCcs() {
