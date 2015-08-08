@@ -4,7 +4,7 @@ SimpleMail is (yet another) simple Java SMTP email sender.
 
 ### Usage example
 
-Create a SimpleMail instance that will send email using localhost:
+Create a Mailer instance to send email using localhost:
 
 ```Java
 Mailer mailer = new Mailer("localhost");
@@ -25,6 +25,16 @@ Send the email:
 ```Java
 mailer.send(mail);
 ```
+
+It is also possible to construct a Mailer instance with a fallback value for the from field, and additional addresses to be added as to, cc and/or bcc of every sent email.
+
+```Java
+Mailer mailer = Mailer.Builder("localhost")
+				.from("me@example.com")
+				.addCc("you@example.com")
+				.build();
+```
+
 
 ### Maven Central
 Include this project directly from Maven Central

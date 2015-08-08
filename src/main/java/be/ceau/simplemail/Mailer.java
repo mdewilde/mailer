@@ -16,10 +16,8 @@
 package be.ceau.simplemail;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Properties;
 
@@ -61,17 +59,17 @@ public class Mailer {
 	private final InternetAddress from;
 
 	/**
-	 * List of InternetAddress instances to add as 'to' for every email sent by <code>this</code> Mailer instance.
+	 * List of InternetAddress instances to add as <code>to</code> for every email sent by <code>this</code> Mailer instance.
 	 */
 	private final List<InternetAddress> tos;
 
 	/**
-	 * List of InternetAddress instances to add as 'cc' for every email sent by <code>this</code> Mailer instance.
+	 * List of InternetAddress instances to add as <code>cc</code> for every email sent by <code>this</code> Mailer instance.
 	 */
 	private final List<InternetAddress> ccs;
 	
 	/**
-	 * List of InternetAddress instances to add as 'bcc' for every email sent by <code>this</code> Mailer instance.
+	 * List of InternetAddress instances to add as <code>bcc</code> for every email sent by <code>this</code> Mailer instance.
 	 */
 	private final List<InternetAddress> bccs;
 
@@ -115,7 +113,7 @@ public class Mailer {
 	 * Verification checks whether sufficient information is availabe for sending the given Mail instance.<br>
 	 * In accordance with <a href="https://www.ietf.org/rfc/rfc2822.txt">RFC 2822</a>, the only required 
 	 * email headers are origination date (section 3.6.1) and from (section 3.6.2).
-	 * This library deviates from this only in that it also requires at least one 'to' address. 
+	 * This library deviates from this only in that it also requires at least one <code>to</code> address. 
 	 * All other fields are optional.<br>
 	 * The from address is that which is set in the Mailer instance at construction, unless a value is also specified
 	 * in the given Mail argument. In that case, the <strong>value from the Mail instance</strong> is used.
@@ -220,7 +218,7 @@ public class Mailer {
 		 * If both the Mailer instance and a Mail message have a from address set, 
 		 * <strong>the from set in the Mail instance is used and a message is logged at the info level</strong>.
 		 * @param from a valid, non-null {@link javax.mail.internet.InternetAddress}
-		 * @return this Mail instance, to allow for method chaining
+		 * @return <code>this</code> Mailer.Builder instance, to allow for method chaining
 		 * @throws IllegalArgumentException if argument is <code>null</code>
 		 */
 		public Mailer.Builder from(InternetAddress from) {
@@ -232,12 +230,10 @@ public class Mailer {
 		}
 
 		/**
-		 * Sets an email address that will be used as the from address for <strong>to every email sent</strong>
-		 * by the resulting Mailer instance. If a Mail instance is sent that has its own from field,
-		 * <strong>the field of that Mail instance will not be used and a warning will be logged</strong>.
 		 * @param from a valid, non-blank String that can be parsed as {@link javax.mail.internet.InternetAddress}
-		 * @return this Mail instance, to allow for method chaining
+		 * @return <code>this</code> Mailer.Builder instance
 		 * @throws IllegalArgumentException if argument is not a legal email address
+		 * @see #from(InternetAddress)
 		 */
 		public Mailer.Builder from(String from) {
 			this.from = convert(from);
@@ -245,13 +241,13 @@ public class Mailer {
 		}
 
 		/**
-		 * Adds an email address to the list of <strong>to</strong> addresses that will be added 
+		 * Adds an email address to the list of <code>to</code> addresses that will be added 
 		 * <strong>to every email sent</strong> by the resulting Mailer instance.
 		 * @param to a valid, non-null {@link javax.mail.internet.InternetAddress}
-		 * @return this Mailer.Builder instance, to allow for method chaining
+		 * @return <code>this</code> Mailer.Builder instance, to allow for method chaining
 		 * @throws IllegalArgumentException if argument is <code>null</code>
 		 */
-		public Mailer.Builder addTo(InternetAddress to) {
+		public Mailer.Builder to(InternetAddress to) {
 			if (to == null) {
 				throw new IllegalArgumentException("to argument can not be null");
 			}
@@ -260,37 +256,24 @@ public class Mailer {
 		}
 
 		/**
-		 * Adds an email address to the list of <strong>to</strong> addresses that will be added 
-		 * <strong>to every email sent</strong> by the resulting Mailer instance.
 		 * @param to a valid, non-blank String that can be parsed as {@link javax.mail.internet.InternetAddress}
-		 * @return this Mailer.Builder instance, to allow for method chaining
+		 * @return <code>this</code> Mailer.Builder instance
 		 * @throws IllegalArgumentException if argument is a wrongly formatted address
+		 * @see #to(InternetAddress)
 		 */
-		public Mailer.Builder addTo(String to) {
+		public Mailer.Builder to(String to) {
 			this.tos.add(convert(to));
 			return this;
 		}
 		
 		/**
-		 * Adds an email address to the list of <strong>cc</strong> addresses that will be added 
-		 * <strong>to every email sent</strong> by the resulting Mailer instance.
-		 * @param cc a valid, non-blank String that can be parsed as {@link javax.mail.internet.InternetAddress}
-		 * @return this Mailer.Builder instance, to allow for method chaining
-		 * @throws IllegalArgumentException if argument is a wrongly formatted address
-		 */
-		public Mailer.Builder addCc(String cc) {
-			this.ccs.add(convert(cc));
-			return this;
-		}
-
-		/**
-		 * Adds an email address to the list of <strong>cc</strong> addresses that will be added 
+		 * Adds an email address to the list of <code>cc</code> addresses that will be added 
 		 * <strong>to every email sent</strong> by the resulting Mailer instance.
 		 * @param cc a valid, non-null {@link javax.mail.internet.InternetAddress}
-		 * @return this Mailer.Builder instance, to allow for method chaining
+		 * @return <code>this</code> Mailer.Builder instance, to allow for method chaining
 		 * @throws IllegalArgumentException if argument is <code>null</code>
 		 */
-		public Mailer.Builder addCc(InternetAddress cc) {
+		public Mailer.Builder cc(InternetAddress cc) {
 			if (cc == null) {
 				throw new IllegalArgumentException("cc argument can not be null");
 			}
@@ -299,29 +282,39 @@ public class Mailer {
 		}
 
 		/**
-		 * Adds an email address to the list of <strong>bcc</strong> addresses that will be added 
-		 * <strong>to every email sent</strong> by the resulting Mailer instance.
-		 * @param bcc a valid, non-blank String that can be parsed as {@link javax.mail.internet.InternetAddress}
-		 * @return this Mailer.Builder instance, to allow for method chaining
+		 * @param cc a valid, non-blank String that can be parsed as {@link javax.mail.internet.InternetAddress}
+		 * @return <code>this</code> Mailer.Builder instance
 		 * @throws IllegalArgumentException if argument is a wrongly formatted address
+		 * @see #cc(InternetAddress)
 		 */
-		public Mailer.Builder addBcc(String bcc) {
-			this.bccs.add(convert(bcc));
+		public Mailer.Builder cc(String cc) {
+			this.ccs.add(convert(cc));
 			return this;
 		}
 
 		/**
-		 * Adds an email address to the list of <strong>bcc</strong> addresses that will be added 
+		 * Adds an email address to the list of <code>bcc</code> addresses that will be added 
 		 * <strong>to every email sent</strong> by the resulting Mailer instance.
 		 * @param bcc a valid, non-null {@link javax.mail.internet.InternetAddress}
-		 * @return this Mailer.Builder instance, to allow for method chaining
+		 * @return <code>this</code> Mailer.Builder instance, to allow for method chaining
 		 * @throws IllegalArgumentException if argument is <code>null</code>
 		 */
-		public Mailer.Builder addBcc(InternetAddress bcc) {
+		public Mailer.Builder bcc(InternetAddress bcc) {
 			if (bcc == null) {
 				throw new IllegalArgumentException("bcc argument can not be null");
 			}
 			this.bccs.add(bcc);
+			return this;
+		}
+
+		/**
+		 * @param bcc a valid, non-blank String that can be parsed as {@link javax.mail.internet.InternetAddress}
+		 * @return <code>this</code> Mailer.Builder instance
+		 * @throws IllegalArgumentException if argument is a wrongly formatted address
+		 * @see #bcc(InternetAddress)
+		 */
+		public Mailer.Builder bcc(String bcc) {
+			this.bccs.add(convert(bcc));
 			return this;
 		}
 
