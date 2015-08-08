@@ -14,10 +14,11 @@ Construct an email:
 
 ```Java
 Mail mail = new Mail()
-			.from("m@test.com")
-			.addTo("t@test.com")
-			.withSubject("Hi")
-			.withText("This is your email");
+			.from("from@ceau.be")
+			.to("to@ceau.be")
+			.bcc("bcc@ceau.be")
+			.withSubject("'tis but a subject")
+			.withText("o hi there");
 ```
 
 Send the email:
@@ -29,12 +30,11 @@ mailer.send(mail);
 It is also possible to construct a Mailer instance with a fallback value for the from field, and additional addresses to be added as to, cc and/or bcc of every sent email.
 
 ```Java
-Mailer mailer = Mailer.Builder("localhost")
-				.from("me@example.com")
-				.addCc("you@example.com")
+Mailer mailer = Mailer.builder("localhost")
+				.from("application@ceau.be")
+				.cc("cc@ceau.be")
 				.build();
 ```
-
 
 ### Maven Central
 Include this project directly from Maven Central
