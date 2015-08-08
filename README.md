@@ -41,7 +41,7 @@ Include this project directly from Maven Central
 ```XML
 <groupId>be.ceau</groupId>
 <artifactId>simplemail</artifactId>
-<version>0.9.1</version>
+<version>0.9.5</version>
 ```
 
 ###	Source code
@@ -52,14 +52,14 @@ Browse this project's [Javadoc](https://www.ceau.be/simplemail/apidocs/index.htm
 
 ### Download
 Download this project
-* [simplemail-0.9.1-javadoc.jar](https://www.ceau.be/simplemail/simplemail-0.9.1-javadoc.jar)
-* [simplemail-0.9.1-javadoc.jar.asc](https://www.ceau.be/simplemail/simplemail-0.9.1-javadoc.jar.asc)
-* [simplemail-0.9.1-sources.jar](https://www.ceau.be/simplemail/simplemail-0.9.1-sources.jar)
-* [simplemail-0.9.1-sources.jar.asc](https://www.ceau.be/simplemail/simplemail-0.9.1-sources.jar.asc)
-* [simplemail-0.9.1.jar](https://www.ceau.be/simplemail/simplemail-0.9.1.jar)
-* [simplemail-0.9.1.jar.asc](https://www.ceau.be/simplemail/simplemail-0.9.1.jar.asc)
-* [simplemail-0.9.1.pom](https://www.ceau.be/simplemail/simplemail-0.9.1.pom)
-* [simplemail-0.9.1.pom.asc](https://www.ceau.be/simplemail/simplemail-0.9.1.pom.asc)
+* [simplemail-0.9.5-javadoc.jar](https://www.ceau.be/simplemail/simplemail-0.9.5-javadoc.jar)
+* [simplemail-0.9.5-javadoc.jar.asc](https://www.ceau.be/simplemail/simplemail-0.9.5-javadoc.jar.asc)
+* [simplemail-0.9.5-sources.jar](https://www.ceau.be/simplemail/simplemail-0.9.5-sources.jar)
+* [simplemail-0.9.5-sources.jar.asc](https://www.ceau.be/simplemail/simplemail-0.9.5-sources.jar.asc)
+* [simplemail-0.9.5.jar](https://www.ceau.be/simplemail/simplemail-0.9.5.jar)
+* [simplemail-0.9.5.jar.asc](https://www.ceau.be/simplemail/simplemail-0.9.5.jar.asc)
+* [simplemail-0.9.5.pom](https://www.ceau.be/simplemail/simplemail-0.9.5.pom)
+* [simplemail-0.9.5.pom.asc](https://www.ceau.be/simplemail/simplemail-0.9.5.pom.asc)
 
 ### GnuPG public key
 Verify signature files with my [GnuPG public key](https://www.ceau.be/pubkey.gpg).
