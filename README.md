@@ -38,21 +38,21 @@ Include this project directly from Maven Central
 Source code is available on [GitHub](https://github.com/mdewilde/simplemail).
 
 ### Javadoc
-Browse this project's [Javadoc](http://www.ceau.be/simplemail/apidocs/index.html).
+Browse this project's [Javadoc](https://www.ceau.be/simplemail/apidocs/index.html).
 
 ### Download
 Download this project
-* [simplemail-0.9.1-javadoc.jar](http://www.ceau.be/simplemail/simplemail-0.9.1-javadoc.jar)
-* [simplemail-0.9.1-javadoc.jar.asc](http://www.ceau.be/simplemail/simplemail-0.9.1-javadoc.jar.asc)
-* [simplemail-0.9.1-sources.jar](http://www.ceau.be/simplemail/simplemail-0.9.1-sources.jar)
-* [simplemail-0.9.1-sources.jar.asc](http://www.ceau.be/simplemail/simplemail-0.9.1-sources.jar.asc)
-* [simplemail-0.9.1.jar](http://www.ceau.be/simplemail/simplemail-0.9.1.jar)
-* [simplemail-0.9.1.jar.asc](http://www.ceau.be/simplemail/simplemail-0.9.1.jar.asc)
-* [simplemail-0.9.1.pom](http://www.ceau.be/simplemail/simplemail-0.9.1.pom)
-* [simplemail-0.9.1.pom.asc](http://www.ceau.be/simplemail/simplemail-0.9.1.pom.asc)
+* [simplemail-0.9.1-javadoc.jar](https://www.ceau.be/simplemail/simplemail-0.9.1-javadoc.jar)
+* [simplemail-0.9.1-javadoc.jar.asc](https://www.ceau.be/simplemail/simplemail-0.9.1-javadoc.jar.asc)
+* [simplemail-0.9.1-sources.jar](https://www.ceau.be/simplemail/simplemail-0.9.1-sources.jar)
+* [simplemail-0.9.1-sources.jar.asc](https://www.ceau.be/simplemail/simplemail-0.9.1-sources.jar.asc)
+* [simplemail-0.9.1.jar](https://www.ceau.be/simplemail/simplemail-0.9.1.jar)
+* [simplemail-0.9.1.jar.asc](https://www.ceau.be/simplemail/simplemail-0.9.1.jar.asc)
+* [simplemail-0.9.1.pom](https://www.ceau.be/simplemail/simplemail-0.9.1.pom)
+* [simplemail-0.9.1.pom.asc](https://www.ceau.be/simplemail/simplemail-0.9.1.pom.asc)
 
 ### GnuPG public key
-Verify signature files with my [GnuPG public key](http://www.ceau.be/pubkey.gpg).
+Verify signature files with my [GnuPG public key](https://www.ceau.be/pubkey.gpg).
 
 ### License
 SimpleMail is licensed under [the Apache 2.0 license](http://www.apache.org/licenses/LICENSE-2.0.txt).

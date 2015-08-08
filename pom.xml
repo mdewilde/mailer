@@ -7,7 +7,7 @@
 	<version>0.9.1</version>
 	<name>SimpleMail</name>
 	<description>SimpleMail is (yet another) simple Java SMTP email library</description>
-	<url>http://www.ceau.be/simplemail</url>
+	<url>https://www.ceau.be/simplemail</url>
 	<developers>
 		<developer>
 			<name>Marceau Dewilde</name>
