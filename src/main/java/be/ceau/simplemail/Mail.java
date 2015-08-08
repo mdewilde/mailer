@@ -19,8 +19,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.mail.internet.AddressException;
+import javax.mail.BodyPart;
+import javax.mail.MessagingException;
 import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
 
 public class Mail implements Serializable {
 
@@ -58,7 +60,7 @@ public class Mail implements Serializable {
 	 * @throws IllegalArgumentException if argument is not a legal email address
 	 */
 	public Mail from(String from) {
-		this.from = convert(from);
+		this.from = Mailer.convert(from);
 		return this;
 	}
 
@@ -81,7 +83,7 @@ public class Mail implements Serializable {
 	 * @throws IllegalArgumentException if argument is not a legal email address
 	 */
 	public Mail addTo(String to) {
-		this.tos.add(convert(to));
+		this.tos.add(Mailer.convert(to));
 		return this;
 	}
 
@@ -118,7 +120,7 @@ public class Mail implements Serializable {
 	 * @throws IllegalArgumentException if argument is not a legal email address
 	 */
 	public Mail addCc(String cc) {
-		this.ccs.add(convert(cc));
+		this.ccs.add(Mailer.convert(cc));
 		return this;
 	}
 
@@ -141,7 +143,7 @@ public class Mail implements Serializable {
 	 * @throws IllegalArgumentException if argument is not a legal email address
 	 */
 	public Mail addBcc(String bcc) {
-		this.bccs.add(convert(bcc));
+		this.bccs.add(Mailer.convert(bcc));
 		return this;
 	}
 
@@ -158,21 +160,6 @@ public class Mail implements Serializable {
 		return this;
 	}
 
-	private InternetAddress convert(String email) {
-		try {
-			return new InternetAddress(email);
-		} catch (AddressException e) {
-			throw new IllegalArgumentException(email + " is not a valid email address");
-		}
-	}
-
-	/**
-	 * Checks if <code>this</code> Mail instance has the minimum required amount of information.
-	 */
-	boolean isValid() {
-		return from != null && !tos.isEmpty() && (txt != null || html != null);
-	}
-
 	@Override
 	public String toString() {
 		return "Mail [from=" + from + ", tos=" + tos + ", ccs=" + ccs + ", bccs=" + bccs + ", subject=" + subject + ", txt=" + txt + ", html=" + html + "]";
@@ -182,8 +169,19 @@ public class Mail implements Serializable {
 		return from;
 	}
 
+	boolean hasFrom() {
+		return from != null;
+	}
+
 	List<InternetAddress> getTos() {
 		return tos;
+	}
+
+	/**
+	 * @return true if <code>this</code> Mail instance has at least one 'to' InternetAddress
+	 */
+	boolean hasTo() {
+		return tos.size() > 0;
 	}
 
 	List<InternetAddress> getCcs() {
@@ -198,12 +196,44 @@ public class Mail implements Serializable {
 		return subject;
 	}
 
+	boolean hasSubject() {
+		return subject != null;
+	}
+
+	boolean hasTxt() {
+		return txt != null && !txt.isEmpty();
+	}
+
 	String getTxt() {
 		return txt;
 	}
 
+	void setTxt(String txt) {
+		this.txt = txt;
+	}
+
+	boolean hasHtml() {
+		return html != null && !html.isEmpty();
+	}
+	
 	String getHtml() {
 		return html;
+	}
+
+	void setHtml(String html) {
+		this.html = html;
+	}
+
+	BodyPart getTxtBodyPart() throws MessagingException {
+		BodyPart part = new MimeBodyPart();
+		part.setContent(txt, "text/plain; charset=UTF-8");
+		return part;
+	}
+	
+	BodyPart getHtmlBodyPart() throws MessagingException {
+		BodyPart part = new MimeBodyPart();
+		part.setContent(html, "text/html; charset=UTF-8");
+		return part;
 	}
 
 }
